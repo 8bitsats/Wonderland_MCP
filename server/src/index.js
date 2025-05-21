@@ -1,37 +1,100 @@
 #!/usr/bin/env node
 
-import { config } from 'dotenv';
-
+// Entry point for the Wonderland MCP Server
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
   StdioServerTransport,
 } from '@modelcontextprotocol/sdk/server/stdio.js';
 
+import { wallet } from './config.js';
 import {
   handlers,
   tools,
-} from '../tools.js';
+} from './tools.js';
 
-config(); // Load environment variables
+// Log server startup info
+console.log(`🌈 Starting Wonderland MCP Server...`);
+console.log(`💰 Using wallet: ${wallet.publicKey.toString()}`);
 
 async function runServer() {
-  // Create the MCP server
-  const server = new McpServer({
-    name: "openai-solana-mcp",
-    version: "1.0.0",
-  });
+  try {
+    // Create the MCP server with our custom name and version
+    const server = new McpServer({
+      name: "wonderland-mcp",
+      version: "1.0.0",
+      description: "An MCP server that connects AI models to Solana with $ALICE token integration"
+    });
 
-  // Register all tools
-  for (const tool of tools) {
-    server.tool(tool.name, tool.inputSchema, handlers[tool.name]);
+    // Register all tools defined in tools.ts
+    console.log(`🔧 Registering tools...`);
+    for (const tool of tools) {
+      console.log(`  - ${tool.name}: ${tool.description}`);
+      server.tool(tool.name, tool.inputSchema, handlers[tool.name]);
+    }
+
+    // Register some helpful prompts
+    console.log(`📝 Registering prompts...`);
+    server.prompt(
+      "create-wonderland-nft",
+      { artDescription: "string", nftName: "string", nftDescription: "string" },
+      ({ artDescription, nftName, nftDescription }) => ({
+        description: "Create and mint a Wonderland-themed NFT",
+        messages: [
+          {
+            role: "user",
+            content: {
+              type: "text",
+              text: `Generate an image of ${artDescription} in a Wonderland style. Then mint it as an NFT named "${nftName}" with the description "${nftDescription}" using the $ALICE token.`
+            }
+          }
+        ]
+      })
+    );
+
+    // Register resource for Alice token info
+    console.log(`📚 Registering resources...`);
+    server.resource(
+      "alice-token-info",
+      "solana://wonderland/alice-token",
+      async () => ({
+        contents: [
+          {
+            uri: "solana://wonderland/alice-token",
+            text: JSON.stringify({
+              name: "Alice Token",
+              symbol: "ALICE",
+              description: "The governance and utility token of the Wonderland ecosystem",
+              uses: [
+                "Pay fees for AI services",
+                "Mint NFTs on Solana",
+                "Interact with the Alice Agent",
+                "Participate in governance"
+              ],
+              links: {
+                website: "https://wonderland.ai",
+                twitter: "https://twitter.com/wonderland_ai",
+                discord: "https://discord.gg/wonderland"
+              }
+            }, null, 2)
+          }
+        ]
+      })
+    );
+
+    // Connect the server with the stdio transport
+    console.log(`🔌 Connecting server to transport...`);
+    const transport = new StdioServerTransport();
+    await server.connect(transport);
+    
+    console.log(`✅ Wonderland MCP Server ready!`);
+  } catch (error) {
+    console.error(`❌ Error starting server:`, error);
+    process.exit(1);
   }
-
-  // Connect the server to standard I/O
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
 }
 
+// Run the server and handle any fatal errors
 runServer().catch((error) => {
-  console.error("Fatal error:", error);
+  console.error("❌ Fatal error:", error);
   process.exit(1);
 });

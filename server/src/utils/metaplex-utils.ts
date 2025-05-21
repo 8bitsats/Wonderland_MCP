@@ -9,28 +9,38 @@ import {
   Keypair,
 } from '@solana/web3.js';
 
-// Create Metaplex instance
-export const createMetaplexInstance = (connection: Connection, wallet: Keypair) => {
+import { CONFIG } from '../config.js';
+
+/**
+ * Create a Metaplex instance with configured identity and storage
+ */
+export const createMetaplexInstance = (connection: Connection, wallet: Keypair): Metaplex => {
   return Metaplex.make(connection)
     .use(keypairIdentity(wallet))
     .use(bundlrStorage({
-      address: 'https://node1.bundlr.network',
-      providerUrl: process.env.HELIUS_RPC_URL,
-      timeout: 60000,
+      address: CONFIG.bundlr.address,
+      providerUrl: CONFIG.solana.rpcUrl,
+      timeout: CONFIG.bundlr.timeout,
     }));
 };
 
-// Helper to create a bundlr uploader
+/**
+ * Create a Bundlr uploader from Metaplex instance
+ */
 export const createBundlrUploader = async (metaplex: Metaplex) => {
   return metaplex.storage().bundlr();
 };
 
-// Helper to convert buffer to MetaplexFile
+/**
+ * Convert a Buffer to a MetaplexFile
+ */
 export const toMetaplexFile = (buffer: Buffer, fileName: string) => {
   return toMetaplexFileFromBrowser(
     new File([buffer], fileName, { type: 'image/png' })
   );
 };
 
-// Re-export Metaplex for convenience
+/**
+ * Re-export Metaplex for convenience
+ */
 export { Metaplex };

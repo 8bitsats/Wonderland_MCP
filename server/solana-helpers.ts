@@ -3,7 +3,7 @@ import { Keypair } from '@solana/web3.js';
 import {
   createMetaplexInstance,
   toMetaplexFile,
-} from './metaplex-utils.js';
+} from './src/utils/metaplex-utils.js';
 
 // Upload image to Arweave via Bundlr
 export const uploadToArweave = async (base64Image: string): Promise<string> => {

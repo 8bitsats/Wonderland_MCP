@@ -1,15 +1,17 @@
 {
-    "mcpServers": {
-      "openai-solana": {
-        "command": "node",
-        "args": [
-          "/absolute/path/to/your/build/index.js"
-        ],
-        "env": {
-          "OPENAI_API_KEY": "your_openai_api_key",
-          "HELIUS_RPC_URL": "https://mainnet.helius-rpc.com/?api-key=your_helius_api_key",
-          "SOLANA_PRIVATE_KEY": "[\"your\",\"solana\",\"private\",\"key\",\"as\",\"byte\",\"array\"]"
-        }
+  "mcpServers": {
+    "wonderland": {
+      "command": "node",
+      "args": [
+        "/absolute/path/to/wonderland-mcp/build/index.js"
+      ],
+      "env": {
+        "OPENAI_API_KEY": "your_openai_api_key",
+        "HELIUS_RPC_URL": "https://mainnet.helius-rpc.com/?api-key=your_helius_api_key",
+        "SOLANA_PRIVATE_KEY": "[\"your\",\"solana\",\"private\",\"key\",\"as\",\"byte\",\"array\"]",
+        "ALICE_TOKEN_MINT": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "ALICE_AGENT_PROGRAM_ID": "A1icewvkJZ5m8cLioqHqUYKKHCCbPjXzJs7x3E8jdJms"
       }
     }
   }
+}
