@@ -1,4 +1,4 @@
-import { config } from 'dotenv';
+import { config as dotenvConfig } from 'dotenv';
 
 import { createSolanaRpc } from '@solana/kit';
 import {
@@ -6,10 +6,8 @@ import {
   PublicKey,
 } from '@solana/web3.js';
 
-// Load environment variables
-config();
+dotenvConfig();
 
-// Validate required environment variables
 const requiredEnvVars = [
   'OPENAI_API_KEY',
   'HELIUS_RPC_URL',
@@ -23,7 +21,6 @@ for (const envVar of requiredEnvVars) {
   }
 }
 
-// Config object
 export const CONFIG = {
   openai: {
     apiKey: process.env.OPENAI_API_KEY!
@@ -32,9 +29,7 @@ export const CONFIG = {
     rpcUrl: process.env.HELIUS_RPC_URL!,
     walletPrivateKey: JSON.parse(process.env.SOLANA_PRIVATE_KEY!) as number[],
     get wallet() {
-      return Keypair.fromSecretKey(
-        Buffer.from(this.walletPrivateKey)
-      );
+      return Keypair.fromSecretKey(Buffer.from(this.walletPrivateKey));
     }
   },
   alice: {
@@ -53,8 +48,5 @@ export const CONFIG = {
   }
 };
 
-// Initialize Solana RPC
 export const solanaRpc = createSolanaRpc(CONFIG.solana.rpcUrl);
-
-// Export wallet for convenience
-export const wallet = CONFIG.solana.wallet;
+export const wallet = CONFIG.solana.wallet; 

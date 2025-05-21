@@ -1,6 +1,3 @@
-#!/usr/bin/env node
-
-// Entry point for the Wonderland MCP Server
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
   StdioServerTransport,
@@ -12,27 +9,23 @@ import {
   tools,
 } from './tools.js';
 
-// Log server startup info
 console.log(`🌈 Starting Wonderland MCP Server...`);
 console.log(`💰 Using wallet: ${wallet.publicKey.toString()}`);
 
 async function runServer() {
   try {
-    // Create the MCP server with our custom name and version
     const server = new McpServer({
       name: "wonderland-mcp",
       version: "1.0.0",
       description: "An MCP server that connects AI models to Solana with $ALICE token integration"
     });
 
-    // Register all tools defined in tools.ts
     console.log(`🔧 Registering tools...`);
     for (const tool of tools) {
       console.log(`  - ${tool.name}: ${tool.description}`);
       server.tool(tool.name, tool.inputSchema, handlers[tool.name]);
     }
 
-    // Register some helpful prompts
     console.log(`📝 Registering prompts...`);
     server.prompt(
       "create-wonderland-nft",
@@ -51,7 +44,6 @@ async function runServer() {
       })
     );
 
-    // Register resource for Alice token info
     console.log(`📚 Registering resources...`);
     server.resource(
       "alice-token-info",
@@ -81,7 +73,6 @@ async function runServer() {
       })
     );
 
-    // Connect the server with the stdio transport
     console.log(`🔌 Connecting server to transport...`);
     const transport = new StdioServerTransport();
     await server.connect(transport);
@@ -93,7 +84,6 @@ async function runServer() {
   }
 }
 
-// Run the server and handle any fatal errors
 runServer().catch((error) => {
   console.error("❌ Fatal error:", error);
   process.exit(1);

@@ -1,3 +1,5 @@
+// TODO: Define shared types for Wonderland MCP here. 
+
 // OpenAI Types
 export type GenerateImageArgs = {
   prompt: string;
@@ -84,4 +86,5 @@ export type ErrorResponse = {
 export type MCPResponse = SuccessResponse | ErrorResponse;
 
 // Handler Type
-export type HandlerFunction<T, R> = (args: T) => Promise<MCPResponse>;
+type Awaited<T> = T extends PromiseLike<infer U> ? U : T;
+export type HandlerFunction<T, R> = (args: T) => Promise<MCPResponse>; 
