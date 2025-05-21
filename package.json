@@ -1,0 +1,35 @@
+{
+  "name": "openai-solana-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for OpenAI image generation and Solana NFT minting",
+  "main": "build/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js",
+    "dev": "ts-node --esm src/index.ts"
+  },
+  "keywords": [
+    "openai",
+    "solana",
+    "nft",
+    "mcp",
+    "ai"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@metaplex-foundation/js": "^0.19.4",
+    "@modelcontextprotocol/sdk": "^1.9.0",
+    "@solana/kit": "^2.1.0",
+    "@solana/web3.js": "^1.87.6",
+    "dotenv": "^16.3.1",
+    "openai": "^4.22.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.3"
+  }
+}
