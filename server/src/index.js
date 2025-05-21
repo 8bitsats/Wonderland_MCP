@@ -10,7 +10,7 @@ import {
 import {
   handlers,
   tools,
-} from './tools.js';
+} from '../tools.js';
 
 config(); // Load environment variables
 
