@@ -1,176 +1,234 @@
-# Wonderland MCP
+# Wonderland MCP: AI-Powered Solana Ecosystem
 
-A Model Context Protocol (MCP) server that bridges AI models with the Solana blockchain, powered by $ALICE token and the Alice agent.
+Wonderland MCP is a powerful Model Context Protocol (MCP) server that connects AI models to the Solana blockchain, enhanced with Helio Solana Pay, Shopify integration, and powered by the Alice Agent and $ALICE token.
 
-## 🌈 Features
+![Wonderland MCP Banner](https://solana.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Findex-why-solana.c3ae45a2.svg&w=3840&q=75)
 
-- **AI Image Generation**: Generate images with OpenAI's GPT-4 Vision models
-- **NFT Minting**: Mint generated images as NFTs on Solana
-- **$ALICE Integration**: Use $ALICE tokens for fee payments and governance
-- **Alice Agent**: Autonomous AI agent for Solana blockchain interactions
-- **MCP Protocol**: Connect any AI model to Solana through standardized interfaces
+## 🌈 Overview
 
-## 📋 Prerequisites
+Wonderland MCP bridges the gap between AI models (Claude, ChatGPT) and blockchain technology, creating a seamless platform for AI-powered crypto applications, e-commerce solutions, and NFT experiences. Our platform combines the power of multiple technologies to create an end-to-end solution:
 
-- Node.js v16+
-- Solana CLI (for wallet management)
-- OpenAI API key
-- Helius RPC URL for Solana access
-- Solana wallet with $ALICE tokens
+- **AI Integration**: Connect Claude or ChatGPT to blockchain operations via MCP
+- **Solana Blockchain**: Process fast, low-cost transactions and mint NFTs
+- **$ALICE Token**: Power the ecosystem with our native utility token
+- **Alice Agent**: Execute automated tasks on the blockchain
+- **Helio Solana Pay**: Process cryptocurrency payments
+- **Shopify Integration**: Connect blockchain payments to e-commerce
+- **Extended Services**: x402, Stripe integration, and more
 
-## 🚀 Quick Start
+## 🔄 System Architecture
 
-1. **Clone this repository**
+```mermaid
+graph TD
+    classDef aiNode fill:#f9d4ff,stroke:#333,stroke-width:1px;
+    classDef blockchainNode fill:#d4f9ff,stroke:#333,stroke-width:1px;
+    classDef paymentNode fill:#fff9d4,stroke:#333,stroke-width:1px;
+    classDef ecommerceNode fill:#d4ffdd,stroke:#333,stroke-width:1px;
+    classDef coreNode fill:#ffd4d4,stroke:#333,stroke-width:1px;
+
+    %% AI Layer
+    Claude[Claude AI]:::aiNode
+    ChatGPT[ChatGPT]:::aiNode
+    OpenAI[OpenAI Services]:::aiNode
+
+    %% MCP Core
+    WonderlandMCP[Wonderland MCP Server]:::coreNode
+    MCPInterface[MCP Interface]:::coreNode
+    HTTPInterface[HTTP REST API]:::coreNode
+    
+    %% Solana Blockchain
+    Solana[Solana Blockchain]:::blockchainNode
+    AliceToken["$ALICE Token"]:::blockchainNode
+    AliceAgent[Alice Agent]:::blockchainNode
+    NFTs[NFT Minting]:::blockchainNode
+    SolanaPrograms[Solana Programs]:::blockchainNode
+    
+    %% Payment Services
+    HelioSolanaPay[Helio Solana Pay]:::paymentNode
+    USDC[USDC Token]:::paymentNode
+    x402[x402 Payment]:::paymentNode
+    Stripe[Stripe Integration]:::paymentNode
+    
+    %% E-commerce
+    Shopify[Shopify Store]:::ecommerceNode
+    EcommerceApps[Shopify Apps]:::ecommerceNode
+    
+    %% Connection Lines - AI to MCP
+    Claude --> MCPInterface
+    ChatGPT --> MCPInterface
+    
+    %% MCP Internal
+    MCPInterface --> WonderlandMCP
+    HTTPInterface --> WonderlandMCP
+    
+    %% MCP to Services
+    WonderlandMCP --> OpenAI
+    WonderlandMCP --> Solana
+    WonderlandMCP --> HelioSolanaPay
+    WonderlandMCP --> Shopify
+    
+    %% Blockchain Relationships
+    Solana --> AliceToken
+    Solana --> NFTs
+    Solana --> SolanaPrograms
+    AliceAgent --> Solana
+    
+    %% Payment Relationships
+    HelioSolanaPay --> USDC
+    HelioSolanaPay --> Solana
+    Stripe --> WonderlandMCP
+    x402 --> WonderlandMCP
+    
+    %% E-commerce Relationships
+    Shopify --> EcommerceApps
+    HelioSolanaPay --> Shopify
+```
+
+## ✨ Core Components & Features
+
+### AI Layer
+- **Claude & ChatGPT Integration**: Connect AI models to blockchain operations
+- **OpenAI Services**: Generate images and content for NFTs and e-commerce
+- **Natural Language Interface**: Control blockchain operations with simple text commands
+
+### Blockchain Operations
+- **Solana Blockchain**: Fast, low-cost transactions and smart contracts
+- **$ALICE Token**: Native utility token powering the ecosystem
+- **NFT Minting**: Create, customize, and deploy NFTs directly from AI
+- **Alice Agent**: Automated task execution and scheduling on Solana
+
+### Payment Solutions
+- **Helio Solana Pay**: Generate and manage Solana Pay links for USDC payments
+- **USDC Support**: Accept stable coin payments with real-time processing
+- **x402 Integration**: Additional payment methods for comprehensive coverage
+- **Stripe Integration**: Connect traditional payment methods to crypto operations
+
+### E-commerce & Application Layer
+- **Shopify Integration**: Connect blockchain payments to product catalogs
+- **Product Linking**: Associate digital assets and NFTs with physical products
+- **Custom Store Solutions**: Tailor blockchain solutions for e-commerce needs
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v16 or higher)
+- Solana wallet with SOL for transaction fees
+- API keys for integrated services
+
+### Quick Start
+
+1. **Clone & Install**
    ```bash
    git clone https://github.com/yourusername/wonderland-mcp.git
    cd wonderland-mcp
+   
+   # Install server dependencies
+   cd server && npm install
+   
+   # Install client dependencies
+   cd ../client && npm install
    ```
 
-2. **Install dependencies**
+2. **Configure Environment**
    ```bash
-   npm install
+   # Copy example environment files
+   cp server/.env.example server/.env
+   cp client/.env.example client/.env
+   
+   # Edit .env files with your API keys and configuration
    ```
 
-3. **Set up environment variables**
-   Create a `.env` file in the server directory with the following:
-   ```
-   OPENAI_API_KEY=your_openai_api_key
-   HELIUS_RPC_URL=your_helius_rpc_url
-   SOLANA_PRIVATE_KEY=your_base58_encoded_private_key
-   ALICE_TOKEN_MINT=your_alice_token_mint_address
-   ```
-
-4. **Use the magical startup script**
+3. **Start Server**
    ```bash
-   cd server
-   ./start.sh
+   cd server && npm start
    ```
 
-   This will:
-   - Check for required dependencies
-   - Verify your .env file
-   - Build the project
-   - Start the server with fun Wonderland-themed messages
-
-5. **Alternative: Manual start**
+4. **Connect Claude Desktop**
    ```bash
-   cd server
-   npm run build
-   npm start
+   cd client && ./claude-desktop-start.sh
    ```
 
-## 🔌 Integration with AI Models
+## 🔌 Integration Points
 
-### Claude Desktop
+### 1. AI Model Integration
 
-To use with Claude Desktop:
+Connect through:
+- **Claude Desktop**: MCP protocol for direct AI-to-blockchain operations
+- **OpenAI API**: Image generation and content creation capabilities
+- **Custom LLM Deployments**: Self-hosted models via the HTTP API interface
 
-1. Open Claude Desktop settings
-2. Go to Developer → Edit Config
-3. Add the Wonderland MCP server configuration
-4. Save and restart Claude Desktop
+### 2. Blockchain Operations
 
-Example configuration:
-```json
-{
-  "mcpServers": {
-    "wonderland": {
-      "command": "/absolute/path/to/server/start.sh",
-      "cwd": "/absolute/path/to/server",
-      "env": {
-        "OPENAI_API_KEY": "your_openai_api_key",
-        "HELIUS_RPC_URL": "your_helius_rpc_url",
-        "SOLANA_PRIVATE_KEY": "your_base58_encoded_private_key",
-        "ALICE_TOKEN_MINT": "your_alice_token_mint_address"
-      }
-    }
-  }
-}
+Interact with:
+- **Solana RPC**: Direct blockchain transactions and queries
+- **$ALICE Token**: Utility token for ecosystem operations
+- **NFT Assets**: Mint, transfer, and manage digital collectibles
+- **Alice Agent**: Programmatic task execution and monitoring
+
+### 3. Payment Processing
+
+Accept payments via:
+- **Helio Solana Pay**: USDC payment links and processing
+- **x402**: Advanced crypto payment solutions
+- **Stripe**: Traditional payment method bridge
+- **Custom Integrations**: Flexible payment adapter system
+
+### 4. E-commerce Solutions
+
+Connect with:
+- **Shopify**: Product catalog integration and e-commerce operations
+- **Custom Storefronts**: API access for bespoke retail experiences
+- **Digital Asset Marketplaces**: NFT and digital good sales platforms
+
+## 💻 Usage Examples
+
+### AI-Powered NFT Creation
+
+```
+Generate an image of a surreal landscape with floating islands and mint it as an NFT called "Wonderland Heights" with rarity attributes for island count and dream level.
 ```
 
-### OpenAI API
+### E-commerce Payment Processing
 
-```javascript
-import OpenAI from 'openai';
-
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
-const response = await client.responses.create({
-  model: "gpt-4o",
-  tools: [{
-    "type": "mcp",
-    "server_label": "wonderland",
-    "server_url": "http://localhost:3000", 
-  }],
-  input: "Generate an art piece of Alice in Wonderland and mint it as an NFT"
-});
+```
+Create a Solana Pay link for 49.99 USDC for the Shopify product "Wonderland VR Experience" with variant "Premium Access" and send confirmation to customer@example.com
 ```
 
-### Example Integration with GPT-Image-1
+### Combined Operations
 
-Our updated server now integrates with OpenAI's GPT-Image-1 model for superior image generation:
-
-```javascript
-// Example of how the server generates images with transparent backgrounds
-const response = await openai.responses.create({
-  model: "gpt-4o",
-  input: userPrompt,
-  tools: [
-    {
-      type: "image_generation",
-      quality: "high",
-      background: "transparent",
-    }
-  ],
-});
-
-// Extract and use the image data
-const imageData = response.output.find(
-  output => output.type === "image_generation_call"
-)?.result;
+```
+Generate product images for the "Summer Collection", create NFT certificates of authenticity for each item, and set up payment links connected to the Shopify store inventory.
 ```
 
-## 🧩 Available Tools
+## 🛠️ Developer Resources
 
-| Tool | Description | Features |
-|------|-------------|----------|
-| `openai_generate_image` | Generate images using GPT-Image-1 | Support for transparent backgrounds, high-quality image generation |
-| `solana_mint_nft` | Mint NFTs on Solana |
-| `alice_token_balance` | Check $ALICE token balance |
-| `alice_agent_task` | Submit tasks to the Alice agent |
-| `alice_token_transfer` | Transfer $ALICE tokens |
+- [API Documentation](docs/api.md): HTTP API details
+- [MCP Protocol Guide](docs/mcp-protocol.md): Working with AI models
+- [Solana Integration](docs/solana.md): Blockchain operations
+- [Payment Processing](docs/payments.md): Setting up payment systems
+- [E-commerce Guide](docs/ecommerce.md): Shopify and store integration
 
-## 🏦 $ALICE Token Economy
+## 🔐 Security Considerations
 
-The $ALICE token powers the Wonderland ecosystem:
+- **API Keys**: Never share your private keys or .env files
+- **Authentication**: Use proper authentication for production deployments
+- **HTTPS**: Always use HTTPS in production environments
+- **Rate Limiting**: Implement rate limiting for public-facing endpoints
+- **Access Control**: Limit sensitive operations to authorized users
 
-- Pay fees for image generation and NFT minting
-- Stake tokens to participate in governance
-- Earn rewards for contributing to the ecosystem
-- Trade on Solana DEXs like Jupiter, Orca, and Raydium
+## 🤝 Contributing
 
-## 🤖 The Alice Agent
-
-The Alice Agent is an autonomous AI entity on Solana that can:
-
-- Execute complex multi-step transactions
-- Monitor NFT collections and token prices
-- Perform scheduled actions on behalf of users
-- Interact with other Solana protocols and programs
-
-## 🛠️ Technical Updates & Improvements
-
-- **Enhanced Image Generation**: Upgraded from DALL-E to GPT-Image-1 model
-- **Transparent Background Support**: Images can now be generated with transparent backgrounds
-- **Improved Error Handling**: Better error handling throughout the codebase
-- **Type Safety**: TypeScript typings improved for all handlers and utilities
-- **Dynamic Wallet Generation**: Test wallets can be generated on the fly
-- **Magical Start Script**: Whimsical start script with helpful debugging information
-- **Connection Compatibility**: Better compatibility with Solana Connection objects
-- **Modernized OpenAI API Usage**: Using the latest Responses API format
+Contributions welcome! Please check our [contribution guidelines](CONTRIBUTING.md).
 
 ## 📄 License
 
-MIT
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgements
+
+- [Model Context Protocol](https://github.com/anthropics/anthropic-tools)
+- [Solana Ecosystem](https://solana.com)
+- [OpenAI](https://openai.com)
+- [Helio](https://helio.example) (Solana Pay Provider)
+- [Alice Agent](https://alice.example) (Automated task execution on Solana)
+- [Shopify](https://shopify.com)
