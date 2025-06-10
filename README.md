@@ -1,6 +1,6 @@
 # Wonderland MCP: AI-Powered Solana Ecosystem
 
-Wonderland MCP is a powerful Model Context Protocol (MCP) server that connects AI models to the Solana blockchain, enhanced with Helio Solana Pay, Shopify integration, and powered by the Alice Agent and $ALICE token.
+Wonderland MCP is a powerful Model Context Protocol (MCP) server that connects AI models to the Solana blockchain, enhanced with Helio Solana Pay, Shopify integration, and powered by the Alice Agent and $MCP token.
 
 ![Wonderland MCP Banner](https://solana.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Findex-why-solana.c3ae45a2.svg&w=3840&q=75)
 
