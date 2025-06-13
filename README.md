@@ -1,6 +1,6 @@
 # Wonderland MCP: AI-Powered Solana Ecosystem
 
-Wonderland MCP is a powerful Model Context Protocol (MCP) server that connects AI models to the Solana blockchain, enhanced with Helio Solana Pay, Shopify integration, and powered by the Alice Agent and $MCP token.
+Wonderland MCP is a powerful Model Context Protocol (MCP) server that connects AI models to the Solana blockchain, enhanced with Helio Solana Pay, Shopify integration, and powered by the MCP Agent and $MCP token.
 
 ![Wonderland MCP Banner](https://solana.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Findex-why-solana.c3ae45a2.svg&w=3840&q=75)
 
@@ -10,8 +10,8 @@ Wonderland MCP bridges the gap between AI models (Claude, ChatGPT) and blockchai
 
 - **AI Integration**: Connect Claude or ChatGPT to blockchain operations via MCP
 - **Solana Blockchain**: Process fast, low-cost transactions and mint NFTs
-- **$ALICE Token**: Power the ecosystem with our native utility token
-- **Alice Agent**: Execute automated tasks on the blockchain
+- **$MCP Token**: Power the ecosystem with our native utility token
+- **MCP Agent**: Execute automated tasks on the blockchain
 - **Helio Solana Pay**: Process cryptocurrency payments
 - **Shopify Integration**: Connect blockchain payments to e-commerce
 - **Extended Services**: x402, Stripe integration, and more
@@ -38,8 +38,8 @@ graph TD
     
     %% Solana Blockchain
     Solana[Solana Blockchain]:::blockchainNode
-    AliceToken["$ALICE Token"]:::blockchainNode
-    AliceAgent[Alice Agent]:::blockchainNode
+    MCPToken["$MCP Token"]:::blockchainNode
+    MCPAgent[MCP Agent]:::blockchainNode
     NFTs[NFT Minting]:::blockchainNode
     SolanaPrograms[Solana Programs]:::blockchainNode
     
@@ -68,10 +68,10 @@ graph TD
     WonderlandMCP --> Shopify
     
     %% Blockchain Relationships
-    Solana --> AliceToken
+    Solana --> MCPToken
     Solana --> NFTs
     Solana --> SolanaPrograms
-    AliceAgent --> Solana
+    MCPAgent --> Solana
     
     %% Payment Relationships
     HelioSolanaPay --> USDC
@@ -93,9 +93,9 @@ graph TD
 
 ### Blockchain Operations
 - **Solana Blockchain**: Fast, low-cost transactions and smart contracts
-- **$ALICE Token**: Native utility token powering the ecosystem
+- **$MCP Token**: Native utility token powering the ecosystem
 - **NFT Minting**: Create, customize, and deploy NFTs directly from AI
-- **Alice Agent**: Automated task execution and scheduling on Solana
+- **MCP Agent**: Automated task execution and scheduling on Solana
 
 ### Payment Solutions
 - **Helio Solana Pay**: Generate and manage Solana Pay links for USDC payments
@@ -161,9 +161,9 @@ Connect through:
 
 Interact with:
 - **Solana RPC**: Direct blockchain transactions and queries
-- **$ALICE Token**: Utility token for ecosystem operations
+- **$MCP Token**: Utility token for ecosystem operations
 - **NFT Assets**: Mint, transfer, and manage digital collectibles
-- **Alice Agent**: Programmatic task execution and monitoring
+- **MCP Agent**: Programmatic task execution and monitoring
 
 ### 3. Payment Processing
 
@@ -230,5 +230,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Solana Ecosystem](https://solana.com)
 - [OpenAI](https://openai.com)
 - [Helio](https://helio.example) (Solana Pay Provider)
-- [Alice Agent](https://alice.example) (Automated task execution on Solana)
+- [MCP Agent](https://mcp.example) (Automated task execution on Solana)
 - [Shopify](https://shopify.com)
