@@ -21,8 +21,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@metaplex-foundation/js": "^0.19.4",
-    "@modelcontextprotocol/sdk": "^1.9.0",
+    "@metaplex-foundation/js": "^0.20.1",
+    "@modelcontextprotocol/sdk": "^1.26.0",
     "@solana/kit": "^2.1.0",
     "@solana/web3.js": "^1.87.6",
     "dotenv": "^16.3.1",
